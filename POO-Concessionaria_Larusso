@@ -1,0 +1,87 @@
+class LojaAutomotores {
+  constructor(preco) {
+    this.preco = preco
+  }
+  
+  calcularParcelado() {
+    return (this.preco * 1.3) / 48
+  }
+  
+  calcularVista() {
+    return this.preco * 0.8
+  }
+  calcularPix() {
+    return this.preco * 0.7
+  }
+}
+
+class CarroPequeno extends LojaAutomotores {
+  constructor(preco) {
+    super(preco)
+  }
+}
+
+
+class CarroGrande extends LojaAutomotores {
+  constructor(preco) {
+    super(preco)
+  }
+}
+
+
+class Moto extends LojaAutomotores {
+  constructor(preco) {
+    super(preco)
+  }
+}
+
+
+function comprarVeiculo(preco) {
+  console.log('Bem vindo a Concessionária LaRusso! Escolha seu veículo! \n')
+  
+  let veiculo;
+  
+  if (preco <= 10000) {
+    veiculo = new Moto(preco)
+    console.log('Veículo escolhido = Moto\n')
+  }
+  
+  else if (preco <= 90000) {
+    veiculo = new CarroPequeno(preco)
+    console.log('Veículo é uma Moto')
+  }
+  else if (preco <= 200000) {
+    veiculo = new CarroGrande(preco)
+    console.log('Veículo é uma Moto')
+  }
+  
+  let escolha = prompt('Escolha o pagamento: \n1.Parcelado\n2.A Vista\n3.PIX\n');
+  escolha = parseInt(escolha)
+  
+  let valor = 0;
+  
+  switch (escolha) {
+    case 1:
+      valor = veiculo.calcularParcelado()
+      console.log('\nValor a ser pago por parcela(1/48): ' + valor)
+      break;
+    case 2:
+      valor = veiculo.calcularVista()
+      console.log('\nValor a ser pago a Vista(20% off): ' + valor)
+      break;
+    case 3:
+      valor = veiculo.calcularPix()
+      console.log('\nValor a ser pago no PIX(30% off): ' + valor)
+      break;
+    
+    default:
+      console.log('\nEscolha uma opcao válida')
+  }
+  
+  return
+}
+
+comprarVeiculo(150000)
+
+
+
